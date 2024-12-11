@@ -137,9 +137,14 @@ public class Scrabble {
 			// Gets the user's input, which is all the characters entered by 
 			// the user until the user enter the ENTER character.
 			String input = in.readString();
-			//// Replace the following break statement with code
-			//// that completes the game playing loop
-			break;
+			if (input.equals("n")){
+					String hand = createHand();
+					playHand(hand);
+			} else if (input.equals("e")){
+					break;
+			} else{
+					System.out.println("That's an invalid input.");
+			}
 		}
 	}
 
@@ -148,8 +153,8 @@ public class Scrabble {
 		////testBuildingTheDictionary();  
 		////testScrabbleScore();    
 		////testCreateHands();  
-		testPlayHands();
-		////playGame();
+		////testPlayHands();
+		playGame();
 	}
 
 	public static void testBuildingTheDictionary() {
