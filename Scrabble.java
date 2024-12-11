@@ -106,15 +106,18 @@ public class Scrabble {
 
 			if (input.equals(".")){
 				break;
-			} 
-			
-			if (isWordInDictionary(input) && MyString.subsetOf(input, hand)){
+
+			} else if (!isWordInDictionary(input)){
+				System.out.println("No such word in the dictionary. Try again.");
+				
+			} else if (MyString.subsetOf(input, hand)){
 				score += wordScore(input);
 				System.out.println(input + " earned " + wordScore(input) + " points. Score: " + score + " points");
 				hand = MyString.remove(hand, input);
-			} else{
-				System.out.println("No such word in the dictionary. Try again.");
+			} else {
+				System.out.println("That's an invalid input. Try again.");
 			}
+			
 		}
 		if (hand.length() == 0) {
 	        System.out.println("Ran out of letters. Total score: " + score + " points");
@@ -153,8 +156,8 @@ public class Scrabble {
 		////testBuildingTheDictionary();  
 		////testScrabbleScore();    
 		////testCreateHands();  
-		////testPlayHands();
-		playGame();
+		testPlayHands();
+		//playGame();
 	}
 
 	public static void testBuildingTheDictionary() {
