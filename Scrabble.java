@@ -108,7 +108,7 @@ public class Scrabble {
 				break;
 
 			} else if (!isWordInDictionary(input)){
-				System.out.println("That's an invalid input. Try again.");
+				System.out.println("Invalid word. Try again.");
 				
 			} else if (MyString.subsetOf(input, hand)){
 				score += wordScore(input);
