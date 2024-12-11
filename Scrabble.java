@@ -70,7 +70,7 @@ public class Scrabble {
 		if (word.length() == HAND_SIZE){
 			score += 50;
 		}
-		if (subsetOf("runi", word)){
+		if (MyString.subsetOf("runi", word)){
 			score += 1000;
 		}
 		return score;
@@ -80,8 +80,10 @@ public class Scrabble {
 	// into it, at random indexes, the letters 'a' and 'e'
 	// (these two vowels make it easier for the user to construct words)
 	public static String createHand() {
-		//// Replace the following statement with your code
-		return null;
+		String hand = MyString.randomStringOfLetters(HAND_SIZE - 2);
+		hand = MyString.insertRandomly('a', hand);
+		hand = MyString.insertRandomly('e', hand);
+		return hand;
 	}
 	
     // Runs a single hand in a Scrabble game. Each time the user enters a valid word:
@@ -168,34 +170,4 @@ public class Scrabble {
 		//playHand("arbffip");
 		//playHand("aretiin");
 	}
-
-	public static int countChar(String str, char ch) {
-		int count = 0;
-		for (int i = 0; i < str.length(); i++){
-		   if (str.charAt(i) == ch){
-			  count++;
-		   }
-		}
-  
-		return count;
-    }
-
-    public static boolean subsetOf(String str1, String str2) {
-        if (str1.isEmpty() || str1.equals(str2)){
-            return true;
-        }
-
-        if (str1.length() > str2.length()){
-            return false;
-        } 
-        else{
-            for (int i = 0; i < str1.length(); i++){
-                if (countChar(str1, str1.charAt(i)) > countChar(str2, str1.charAt(i))){
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
 }
