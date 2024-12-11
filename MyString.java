@@ -3,15 +3,24 @@
  */
 public class MyString {
     public static void main(String args[]) {
-        String hello = "helslo world";
-        System.out.println(countChar(hello, 'h'));
-        System.out.println(countChar(hello, 'l'));
-        System.out.println(countChar(hello, 'z'));
-        System.out.println(spacedString(hello));
-        System.out.println(remove("committee", "meet"));
-        System.out.println(insertRandomly('n', ""));
-
-        //// Put your other tests here.
+        // String hello = "helslo world";
+        // System.out.println(countChar(hello, 'h'));
+        // System.out.println(countChar(hello, 'l'));
+        // System.out.println(countChar(hello, 'z'));
+        // System.out.println(spacedString(hello));
+        // System.out.println(remove("committee", "meet"));
+        // System.out.println(insertRandomly('n', ""));
+        System.out.println("1 " + subsetOf("space", "space")); // 1 true
+        System.out.println("2 " + subsetOf("capse", "space")); // 2 true
+        System.out.println("3 " + subsetOf("claim", "space")); // 3 false *
+        System.out.println("4 " + subsetOf("sapce", "claim")); // 4 false *
+        System.out.println("5 " + subsetOf("sap", "space")); // 5 true
+        System.out.println("6 " + subsetOf("pass", "space")); // 6 false
+        System.out.println("7 " + subsetOf("", "")); // 7 true
+        System.out.println("8 " + subsetOf("ss", "")); // 8 false
+        System.out.println("9 " + subsetOf("runi", "running")); // 9 true
+        System.out.println("10 " + subsetOf("runix", "runi")); // 10 false 
+        System.out.println("11 " + subsetOf("runi", "quiz")); // 11 false *
     }
 
     /**
@@ -45,25 +54,23 @@ public class MyString {
      * @return true is str1 is a subset of str2, false otherwise
      */
     public static boolean subsetOf(String str1, String str2) {
-        if (str1.isEmpty()){
+        if (str1.isEmpty() || str1.equals(str2)){
             return true;
         }
 
         if (str1.length() > str2.length()){
             return false;
-        }
-
-        if (str1.length() < str2.length()){
-            //int count = 0;
+        } 
+        else{
             for (int i = 0; i < str1.length(); i++){
-                if (countChar(str1, str1.charAt(i)) != countChar(str2, str2.charAt(i))){
+                if (countChar(str1, str1.charAt(i)) > countChar(str2, str1.charAt(i))){
                     return false;
                 }
             }
         }
 
         return true;
-    }
+    } 
 
     /** Returns a string which is the same as the given string, with a space
      * character inserted after each character in the given string, except
@@ -143,5 +150,6 @@ public class MyString {
          // Insert the character at the random index
          String result = str.substring(0, randomIndex) + ch + str.substring(randomIndex);
          return result;
-    }    
+    }   
+    
 }

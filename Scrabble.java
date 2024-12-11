@@ -48,7 +48,12 @@ public class Scrabble {
 
 	// Checks if the given word is in the dictionary.
 	public static boolean isWordInDictionary(String word) {
-		//// Replace the following statement with your code
+
+		for (int i = 0; i < NUM_OF_WORDS; i++){
+			if (word.equals(DICTIONARY[i])){
+				return true;
+			}
+		}
 		return false;
 	}
 	
@@ -56,8 +61,19 @@ public class Scrabble {
 	// If the length of the word equals the length of the hand, adds 50 points to the score.
 	// If the word includes the sequence "runi", adds 1000 points to the game.
 	public static int wordScore(String word) {
-		//// Replace the following statement with your code
-		return 0;
+		int score = 0;
+		for (int i = 0; i < word.length(); i++){
+			score += SCRABBLE_LETTER_VALUES[word.charAt(i) - 97];
+		}
+		score *= word.length();
+		
+		if (word.length() == HAND_SIZE){
+			score += 50;
+		}
+		if (subsetOf("runi", word)){
+			score += 1000;
+		}
+		return score;
 	}
 
 	// Creates a random hand of length (HAND_SIZE - 2) and then inserts
@@ -131,7 +147,7 @@ public class Scrabble {
 		for (int i = 0; i < 5; i++) {
 			System.out.println(DICTIONARY[i]);
 		}
-		System.out.println(isWordInDictionary("mango"));
+		System.out.println(isWordInDictionary("baby"));
 	}
 	
 	public static void testScrabbleScore() {
@@ -152,4 +168,34 @@ public class Scrabble {
 		//playHand("arbffip");
 		//playHand("aretiin");
 	}
+
+	public static int countChar(String str, char ch) {
+		int count = 0;
+		for (int i = 0; i < str.length(); i++){
+		   if (str.charAt(i) == ch){
+			  count++;
+		   }
+		}
+  
+		return count;
+    }
+
+    public static boolean subsetOf(String str1, String str2) {
+        if (str1.isEmpty() || str1.equals(str2)){
+            return true;
+        }
+
+        if (str1.length() > str2.length()){
+            return false;
+        } 
+        else{
+            for (int i = 0; i < str1.length(); i++){
+                if (countChar(str1, str1.charAt(i)) > countChar(str2, str1.charAt(i))){
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
 }
